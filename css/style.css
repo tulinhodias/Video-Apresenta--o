@@ -23,21 +23,68 @@ h3 {
     font-size: 1.8rem;
     color: #858585;
     font-weight: normal;
+    margin-top: -1rem;
 }
 
-#video-container {
+#container {
     max-width: 600px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
 }
 
-#video-container h1,h3 {
+#container h1,h3 {
     text-align: center;
+}
+
+#video-container {
+    max-width: 600px;
+    height: auto;
+    position: relative;
 }
 
 #video {
     border-radius: 5px;
+}
+
+#playButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    color: white;
+    width: 5rem;
+    height: 5rem;
+    border: none;
+    cursor: pointer;
+    z-index: 1; /* Certifica-se de que o botão fique sobre o vídeo */
+    display: block; /* Mostra o botão de play inicialmente */
+}
+
+/* Estilo para ocultar o botão de play quando o vídeo estiver reproduzindo */
+video.playing + #playButton {
+    display: none;
+}
+
+/* Adiciona a classe 'playing' quando o vídeo for reproduzido */
+video.playing {
+    opacity: 1;
+}
+
+/* Estilo para ocultar a barra de progresso */
+video::-webkit-media-controls-enclosure {
+    display: none !important;
+}
+
+video::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+video::-webkit-media-controls-play-button {
+    display: -webkit-initial;
 }
 
 .div-logo {
@@ -53,7 +100,7 @@ h3 {
 
 @media (max-width: 800px) {
     
-    #video-container {
+    #container {
     max-width: 100%;
     margin: 0 auto;
     padding: 0 2rem;

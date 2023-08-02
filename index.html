@@ -6,19 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Apresentação</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/a3bed33f3e.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <div id="video-container">
-            <h1>Descubra como funciona o financiamento 
-                e os benefícios para nossos associados.</h1>
-                <h3>Assista agora e aproveite todas as vantagens</h3>
-            <video data-active="false" controls id="video" playsinline width="100%" height="100%">
+    <div id="container">
+        <h1>Descubra como funciona o financiamento
+            e os benefícios para nossos associados.</h1>
+        <h3>Assista agora e aproveite todas as vantagens</h3>
+        <div id="video-container">
+            <video data-active="false" id="video" playsinline width="100%" height="100%">
                 <source
                     src="https://player.vimeo.com/progressive_redirect/playback/850523610/rendition/1080p/file.mp4?loc=external&signature=5e7de7e53292a7cd134990dd72b3666a4fc4c70dceb8f43cf3ff3174371ab46d">
             </video>
-            <div class="div-logo">
+            <button id="playButton"><i class="fa fa-play" aria-hidden="true"></i></button>
+        </div>
+        <div class="div-logo">
             <img class="img-logo" src="./img/logo_busca.png" alt="grupo plataforma em rede">
-            </div>
+        </div>
     </div>
+
+    <script>
+        const videoPlayer = document.getElementById("video");
+        const playButton = document.getElementById("playButton");
+
+        // Adiciona um evento de clique no botão de play personalizado
+        playButton.addEventListener("click", () => {
+            videoPlayer.play();
+            videoPlayer.classList.add("playing"); // Adiciona a classe 'playing' ao vídeo
+            playButton.style.display = "none"; // Oculta o botão de play
+        });
+
+        // Adiciona um evento para quando o vídeo estiver pausado
+        videoPlayer.addEventListener("pause", () => {
+            videoPlayer.classList.remove("playing"); // Remove a classe 'playing' do vídeo
+            playButton.style.display = "block"; // Mostra o botão de play novamente
+        });
+
+        // Adiciona um evento de clique no vídeo para pausar/reproduzir
+        videoPlayer.addEventListener("click", () => {
+            if (videoPlayer.paused) {
+                videoPlayer.play();
+                videoPlayer.classList.add("playing"); // Adiciona a classe 'playing' ao vídeo
+            } else {
+                videoPlayer.pause();
+                videoPlayer.classList.remove("playing"); // Remove a classe 'playing' do vídeo
+            }
+            playButton.style.display = videoPlayer.paused ? "block" : "none"; // Mostra/oculta o botão de play
+        });
+    </script>
 </body>
+
 </html>
